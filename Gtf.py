@@ -4,6 +4,7 @@ import bx.seq.twobit
 class GtfRec(object):
     def __init__(self, seqname, source, feature, start, end, score, strand, frame, attributes):
         """represent a Gene Transfer Format File - http://mblab.wustl.edu/GTF2.html"""
+        #gtf is one based - but make it zero-based, half-open
         self.seqname=seqname
         self.source=source
         self.feature=feature
@@ -45,7 +46,8 @@ class GtfRec(object):
 
     def walkCdsFwd(self, twobit):
         """  given a twobit object generator to walk CDS feature and yield codon, aa & codonStart, codonEnd intervals """
-        #sys.stderr.write("walking fwd CDS...\n")
+       
+        #walk the CDS feature in frame, so adjust the counter variable i if needed
         i=self.start
         if self.frame == 1:
             i=i+1
@@ -58,7 +60,9 @@ class GtfRec(object):
             i=i+3
 
     def walkCdsMinus(self, twobit):
-        #sys.stderr.write("walking minus CDS...\n")
+        """  given a twobit object generator to walk CDS feature and yield codon, aa & codonStart, codonEnd intervals """
+        #walk the CDS feature in frame, so adjust the counter variable i if needed
+
         i=self.end
         
         if self.frame == 1:
