@@ -1,0 +1,9 @@
+Some python utilities to work with GTF files <http://mblab.wustl.edu/GTF2.html>
+
+Gtf.py is a python class representing a GTF annotation
+gtfIO are python generators to read GTF files
+
+Requires bx-python http://bitbucket.org/james_taylor/bx-python/wiki/Home
+
+Amit Indap
+indapa@gmail.com
