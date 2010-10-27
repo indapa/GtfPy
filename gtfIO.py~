@@ -1,0 +1,27 @@
+from Gtf import GtfRec
+def getCds(fh):
+    """ python generator that yields Gtf object for CDS feature """
+    for line in fh:
+        if '#' not in line:
+            if 'CDS' in line:
+                (name,src,feat,begin, end, score, strand, frame, attr) = line.strip().split('\t')
+                cdsGtf=GtfRec(name,src,feat,begin, end, score, strand, frame, attr)
+                yield cdsGtf
+
+def getStartCodon(fh):
+    """ python generator that yields Gtf object for start_codon feature """
+    for line in fh:
+        if '#' not in line:
+            if 'start_codon' in line:
+                (name,src,feat,begin, end, score, strand, frame, attr) = line.strip().split('\t')
+                start_codonGtf=GtfRec(name,src,feat,begin, end, score, strand, frame, attr)
+                yield start_codonGtf
+
+def getStopCodon(fh):
+    """ python generator that yields Gtf object for stop_codon feature """
+    for line in fh:
+        if '#' not in line:
+            if 'stop_codon' in line:
+                (name,src,feat,begin, end, score, strand, frame, attr) = line.strip().split('\t')
+                stop_codonGtf=GtfRec(name,src,feat,begin, end, score, strand, frame, attr)
+                yield stop_codonGtf
